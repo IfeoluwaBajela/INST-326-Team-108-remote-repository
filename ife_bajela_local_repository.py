@@ -15,3 +15,7 @@ class Repository:
     """  
         self.name = name
         self.files = []
+class Commit:
+    def __init__(self, message, files)
+        self.message = message
+        self.files = files

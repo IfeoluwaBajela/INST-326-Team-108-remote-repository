@@ -7,13 +7,3 @@ class Repository:
         Files(list): List of files in working directorygit
     """
     
-    def __init__(self, name):
-     """A innit function with two paramaters. 
-     
-     Attributes:
-        Name (str): Name
-        Files (list): A list of files
-    """  
-        self.name = name
-        self.files = []
-        

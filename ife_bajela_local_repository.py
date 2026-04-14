@@ -6,7 +6,6 @@ class Repository:
         Name (str): Name of repository 
         Files(list): List of files in working directorygit
     """
-    
     def __init__(self, name):
      """A innit function with two paramaters. 
      

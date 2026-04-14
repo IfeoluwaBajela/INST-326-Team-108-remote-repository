@@ -38,6 +38,7 @@ def record_score (categories, player_guesses, correct_answer, score_history):
 
 	Returns:
 		dict: records and stores the score for this round.
+	'''
 
 	num_correct = 0
 	for i in range(5):

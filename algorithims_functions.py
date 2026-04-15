@@ -54,4 +54,36 @@ def record_score (categories, player_guesses, correct_answer, score_history):
 	score_history.append(score_record)
 	return score_record	
 		
+def guess_select(answer, guess):
+	"""Determines each letter's position status for one guess against the correct
+	word based on its position and presence
+	Arguments:
+		answer (Str): the actaul targeted word the player is trying to guess
+		guess (str): The players 5 lettered guess provided by the player
+	Side effects:
+		converts the answer and guess strings into lowercase for case sensitivity
+		"""
+	answer = answer.lower()
+	guess = guess.lower()
+	result = []
+	answer_list = list(answer)
+
+	statuses = ["absent", "absent", "absent", "absent"]
+
+	for i in range(5):
+		if guess[i] == answer_list[i]:
+			statuses[i] = "correct"
+			continue
+		
+		letter = guess[i]
+		if letter in answer_list:
+			statuses[i] = "present"
+			answer_list.remove(letter)
 	
+	for i in range(5):
+		item = {
+			"letter": guess[i],
+			"status": statuses[i]
+		}
+		results.append(item)
+	return results

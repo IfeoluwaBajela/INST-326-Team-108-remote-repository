@@ -89,3 +89,50 @@ def guess_select(answer, guess):
 		}
 		results.append(item)
 	return results
+
+
+def select_categories(categories, used_categories):
+    """Select a single unused category from options available
+    Arguments: 
+    
+    categories(list of dict): A list where each element is a dictionary 
+    representing each category to be used.
+    
+    Used categories(str): All the categories that have been 
+    used in a previous round that should be avoided. 
+    
+    Returns:
+    str: The name of the selected category for the current round.
+    Returns None if no unused categories are available.
+
+    Side Effects:
+    Updates the used_categories list by adding the selected category
+    name to prevent reuse in future rounds.
+
+    """
+    
+    
+    available_categories = []
+    
+    for category in categories: 
+        if category["name"] not in used_categories:
+            available_categories.append(category)
+            
+    if not available_categories:    
+        return None 
+   
+    selected_category = available_categories[0]    
+    
+    options = selected_category["options"]
+    selected_option = options[0]
+    
+    selected_category["options"].append(selected_category["options"].pop(0))
+    
+    used_categories.append(selected_category["name"])
+    
+    return selected_category["name"] 
+	
+	categories = [{"name": "Buildings","options":["ESJ","STAMP","Mckelding"]},
+              {"name":"Majors","options":["Information Science","Mathematics",
+                "Biology"]}, {"name":"Colleges","options":["CMNS","BSOS","SPH"]}
+              ]

@@ -27,6 +27,8 @@ def state (answers, round, attempts):
         attempts == 3
         print (f"""Correct!!! New Round \n 
                 Round: {round}, Attempts: {attempts}, Points: {self.points}""")
+    else: 
+        print (f"Round: {round}, Attempts: {attempts}, Points: {self.points}")
 		
 def record_score (categories, player_guesses, correct_answer, score_history):
 	''' Calculates and stores the score the player recieved for that round.

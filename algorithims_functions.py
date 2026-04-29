@@ -49,13 +49,45 @@ def record_score (categories, player_guesses, correct_answer, score_history):
 	score_percent = (num_correct / 5) * 100
 	score_record = {
 		"category": category
-		"num_correct": num_category
+		"num_correct": num_correct
 		"score_percent": score_percent
 		}
 
 	score_history.append(score_record)
 	return score_record	
-		
+def display_score(score_record):
+	'''
+	Displays the player's results of one round.
+
+	Parameters:
+		score_record(dict): The score record returned by record_round_score.
+	'''
+	print("Total Score")
+	print(f"Category: {score_record['category']}")
+	print(f"Accuracy: {score_record['num_correct']}/5")
+	print(f"Score: {score_record['score_record']}%")
+
+	if score_record['num_correct'] == 5:
+		print("\nPerfect score! You really know your stuff")
+	elif score_record['num_correct'] >= 3:
+		print("\Not bad! Keep it up :D")
+	else: 
+		print("\nKeep trying! You'll get the hang of it")
+
+def display_score_history(score_history):
+	'''
+	Displays the score history to the player.
+
+	Parameters:
+		score_history(list): The list of score records
+	'''
+	Print("\nScore History)
+	for i in range(len(score_history)):
+		record = score_history[i]
+		print(f"Round {i+1}: {record['category']}"
+			  f" | {record['num_correct']}/5 correct"
+			  f" | {record['score_percent']}%")
+
 def guess_select(answer, guess):
 	"""Determines each letter's position status for one guess against the correct
 	word based on its position and presence

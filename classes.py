@@ -1,3 +1,5 @@
+import argparse
+
 class player():
     """Class for a player. Each player has some sort of name and a highscore 
     that is updated. 

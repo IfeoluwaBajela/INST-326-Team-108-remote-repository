@@ -4,12 +4,18 @@ class player():
     
     """
     def __init__(self, name, highscore):
+        self.name = name
+        self.highscore = highscore
         pass
+    
+    def __repr__(self):
+        return f"player(name={self.name}, highscore={self.highscore})"
 
 
 
 
-class game_state():
+class game():
     
     def __init__(self, word):
         pass
+    

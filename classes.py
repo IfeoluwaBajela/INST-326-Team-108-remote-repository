@@ -1,6 +1,6 @@
 from argparse import ArgumentParser
 import re 
-import se 
+import sys
 
 class player():
     """Class for a player. Each player has some sort of name and a highscore 
@@ -22,6 +22,11 @@ class game():
     
     def __init__(self, word):
         pass
+    
+def main():
+    """ Creates the game.
+    """
+    pass
     
 def parse_args(arglist):
     """Parses argument command lines
@@ -57,3 +62,9 @@ def rules_display():
     """
     
     print("--Rules-- \n ")
+    
+if __name__ == "main":
+    args = parse_args(sys.argv[1:])
+    if args.rules:
+        rules_display()
+    main()

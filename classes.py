@@ -42,5 +42,18 @@ def parse_args(arglist):
     parser = ArgumentParser() 
     parser.add_argument("words", help = "path to word list from a text file.")
     parser.add_argument("players", nargs = "*", help = "Player names")
+    parser.add_argument("-r", "--rules", action= "store_true", help= "Displays"
+                        "rules")
     
     return parser.parse_args(arglist)
+
+def rules_display():
+    """Displays rules of the game. To be called using -r or -rules. 
+    
+    
+    Side Effects:
+        Prints the rules of the games. 
+    
+    """
+    
+    print("--Rules-- \n ")

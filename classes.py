@@ -34,6 +34,7 @@ def parse_args(arglist):
             arglist (list of strings): arguments from the command line
             
         Returns:
+            namespace: The parsed arguments as a namespace. 
         
     """
     #Will add more arguments depending on if we need them or not.

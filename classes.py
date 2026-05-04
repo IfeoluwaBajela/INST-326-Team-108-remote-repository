@@ -61,7 +61,14 @@ def rules_display():
     
     """
     
-    print("--Rules-- \n ")
+    print("--Rules-- \n "
+          "Guess the name based off the question given! \n"
+          "You have two minutes to guess each name with each round having 5"
+          "questions. The amount of rounds is dependent on user input. \n"
+          "Depending on how well you answer you will be rewarded a set amount"
+          " of points. \n 1st try 30 points \n 2nd try 20 points. \n"
+          "3rd try 10 points \n and none if failed. Good luck \n"
+          "_______________________")
     
 if __name__ == "main":
     args = parse_args(sys.argv[1:])

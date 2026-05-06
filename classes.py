@@ -1,11 +1,7 @@
 from argparse import ArgumentParser
 import re 
-<<<<<<< HEAD
 import se 
 import random
-=======
-import sys
->>>>>>> 51f9e2cb2c98a11c87c7696ff0adbb77fcb38e65
 
 with open("keywords.txt", "r") as file:
     w_bank = [line.strip().lower() for line in file if line.strip()]
@@ -24,6 +20,30 @@ class player():
     
     def __repr__(self):
         return f"player(name={self.name}, highscore={self.highscore})"
+    
+    def __add__(self, other):
+        """Creates a new player by adding the highscores of two players"""
+        return player(self.name, self.highscore + other.highscore)
+    
+    def __eq__(self, other):
+        """Compares two players highscores."""
+        if not isinstance(other, player):
+            return NotImplemented
+        return self.highscore == self.highscore
+    
+    def __lt__(self, other):
+        """Checks whether a player's highscore is less than another player's."""
+        if not isinstance(other, player):
+            return NotImplemented
+        return self.highscore < other.highscore
+    
+    def __gt__(self, other):
+        """Checks whether a player's highscore is greater than another 
+            player's
+            """
+        if not isinstance(other, player):
+            return NotImplemented
+        return self.highscore > other.highscore
 
 
 
@@ -35,7 +55,7 @@ class game():
         pass
     
 def main():
-    """ Creates the game.
+    """ Creates the game and allows players to play it. 
     """
     pass
     
@@ -65,14 +85,17 @@ def parse_args(arglist):
 
 def rules_display():
     """Displays rules of the game. To be called using -r or -rules. 
-    
-    
     Side Effects:
         Prints the rules of the games. 
     
     """
     
-    print("--Rules-- \n ")
+    print("--Rules-- \n Guess the name based on the question given."
+          "You have two minutes to guess each name with each round having 5"
+          "questions. The amount of rounds is dependent on user input. "
+          "Depending on how well you answer you will be rewarded a set amount "
+          "of points with first try being 30, 2nd 20, three tries 10 and none "
+          "if failed. Good Luck! \n _________________________")
 
 class WordSelection:
 

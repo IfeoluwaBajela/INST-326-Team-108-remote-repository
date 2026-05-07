@@ -27,7 +27,7 @@ def state (answers, round, attempts):
 		points = calculate_points(attempts_used)
         round += 1
         attempts == 3
-        print (f"""Correct!!! New Round \n 
+        print (f"""Correct! New Round \n 
                 Round: {round}, Attempts: {attempts}, Points: {self.points}""")
     else: 
         print (f"Round: {round}, Attempts: {attempts}, Points: {self.points}")
@@ -154,7 +154,7 @@ def guess_select(answer, guess):
 		"""
 	answer = answer.lower()
 	guess = guess.lower()
-	result = []
+	results = []
 	answer_list = list(answer)
 
 	statuses = ["absent", "absent", "absent", "absent"]
@@ -191,14 +191,14 @@ def run_question_timer(questions, time_limit=120):
 	Returns:
 		list: A list of the player's answers in order.
 	'''
-	players_answers[]
+	players_answers=[]
 
 	for question_dict in questions:
 		question, answer = (
-			question_dict["question"]
+			question_dict["question"],
 			question_dict["answer"]
 		)
-		print(f"{question})
+		print(f"{question}")
 
 		start_time = time.time()
 		player_answer = ""

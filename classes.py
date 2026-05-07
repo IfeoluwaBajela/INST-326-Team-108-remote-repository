@@ -98,7 +98,7 @@ def rules_display():
           "of points with first try being 30, 2nd 20, three tries 10 and none "
           "if failed. Good Luck! \n _________________________")
 
-if __name__ = "__main__":
+if __name__ == "__main__":
     args = parse_args(sys.argv[1:])
     if args.rules:
         rules_display()

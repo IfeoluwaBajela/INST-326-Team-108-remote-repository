@@ -75,7 +75,7 @@ def parse_args(arglist):
         
     """
     #Will add more arguments depending on if we need them or not.
-    
+     
     parser = ArgumentParser() 
     parser.add_argument("words", help = "path to word list from a text file.")
     parser.add_argument("players", nargs = "*", help = "Player names")

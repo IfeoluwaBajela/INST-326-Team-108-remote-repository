@@ -161,6 +161,8 @@ def guess_select(answer, guess):
 		}
 		results.append(item)
 	return results
+
+	
 def run_question_timer(questions, time_limit=120):
 	'''
 	Author: Aya Shrestha
@@ -264,4 +266,10 @@ def select_categories(categories, used_categories):
 
     return bool(re.fullmatch(pattern, category))
 
+def validate_guess_pro(guess, word_list):
+	is_valid, message = validate_guess(guess)
+	if not is_valid:
+		return False, message
 
+		if guess.lower() not in word_list:
+			return False, "That is not a recognized word."

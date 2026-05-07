@@ -23,9 +23,11 @@ def state (answers, round, attempts):
         print (f"""Try again \n 
                 Round: {round}, Attempts: {attempts}, Points: {self.points}""")
     elif correct == True: 
+		attempts_used = 3 - attempts
+		points = calculate_points(attempts_used)
         round += 1
         attempts == 3
-        print (f"""Correct!!! New Round \n 
+        print (f"""Correct! New Round \n 
                 Round: {round}, Attempts: {attempts}, Points: {self.points}""")
     else: 
         print (f"Round: {round}, Attempts: {attempts}, Points: {self.points}")
@@ -47,7 +49,7 @@ def word_display(word, guess):
  
 	bottom = ""
 	
-	for i in len(word):
+	for i in range (len(word)):
 		if word[i] == guess[i]:
 			bottomtemp = bottom + "G"
 			bottom = bottomtemp
@@ -62,7 +64,19 @@ def word_display(word, guess):
 	print(guess)
 	print(bottom)
  
-	
+def calculate_points(attempts_used):
+    """
+    Calculates points based on how many attempts the player used.
+    
+    Arguments:
+        attempts_used (int): The number of attempts the player used (1, 2, or 3)
+            	 0 indicates the player failed to guess correctly.
+    
+    Returns:
+        int: Total points earned for that question. (30, 20, 10, or 0)
+    """
+    points_map = {1: 30, 2: 20, 3: 10}
+    return points_map.get(attempts_used, 0)
 		
 def record_score (category, player_guesses, correct_answer, score_history):
 	''' 
@@ -91,6 +105,7 @@ def record_score (category, player_guesses, correct_answer, score_history):
 
 	score_history.append(score_record)
 	return score_record	
+	
 def display_score(score_record):
 	'''
 	Author:Aya Shrestha
@@ -139,10 +154,9 @@ def guess_select(answer, guess):
 		"""
 	answer = answer.lower()
 	guess = guess.lower()
-	result = []
+	results = []
 	answer_list = list(answer)
-
-	statuses = ["absent", "absent", "absent", "absent"]
+	statuses = ["absent"]*5
 
 	for i in range(5):
 		if guess[i] == answer_list[i]:
@@ -161,6 +175,8 @@ def guess_select(answer, guess):
 		}
 		results.append(item)
 	return results
+
+	
 def run_question_timer(questions, time_limit=120):
 	'''
 	Author: Aya Shrestha
@@ -174,14 +190,14 @@ def run_question_timer(questions, time_limit=120):
 	Returns:
 		list: A list of the player's answers in order.
 	'''
-	players_answers[]
+	players_answers=[]
 
 	for question_dict in questions:
 		question, answer = (
-			question_dict["question"]
+			question_dict["question"],
 			question_dict["answer"]
 		)
-		print(f"{question})
+		print(f"{question}")
 
 		start_time = time.time()
 		player_answer = ""
@@ -264,4 +280,12 @@ def select_categories(categories, used_categories):
 
     return bool(re.fullmatch(pattern, category))
 
+def validate_guess_pro(guess, word_list):
+	is_valid, message = validate_guess(guess)
+	if not is_valid:
+		return False, message
 
+	if guess.lower() not in [w.lower() for w in available_categories:
+			return False, "That is not a recognized word."
+
+	return True, "Valid guess"

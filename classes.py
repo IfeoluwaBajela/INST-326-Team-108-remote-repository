@@ -3,10 +3,10 @@ import re
 import sys
 import random
 
-with open("keywords.txt", "r") as file:
-    w_bank = [line.strip().lower() for line in file if line.strip()]
+#with open("keywords.txt", "r") as file:
+ #   w_bank = [line.strip().lower() for line in file if line.strip()]
 
-    major_word = random.choice(w_bank)
+  #  major_word = random.choice(w_bank)
     
 class player():
     """Class for a player. Each player has some sort of name and a highscore 

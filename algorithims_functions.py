@@ -259,3 +259,9 @@ def select_categories(categories, used_categories):
               {"name":"Majors","options":["Information Science","Mathematics",
                 "Biology"]}, {"name":"Colleges","options":["CMNS","BSOS","SPH"]}
               ]
+	def valid_category(category):
+    pattern =  r"^[A-Za-z ]+$"
+
+    return bool(re.fullmatch(pattern, category))
+
+

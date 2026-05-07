@@ -40,6 +40,29 @@ def record_input(self):
     resp = input(f"{self.name}, input your guess.")
     return resp
 
+def word_display(word, guess):
+	"""Displays the word """
+ 
+	#Might go into another method depending on how code looks
+ 
+	bottom = ""
+	
+	for i in len(word):
+		if word[i] == guess[i]:
+			bottomtemp = bottom + "G"
+			bottom = bottomtemp
+		else:
+			if guess[i] in word:
+				bottomtemp = bottom + "Y"
+				bottom = bottomtemp
+			else:
+				bottomtemp = bottom + "B"
+				bottom = bottomtemp
+    
+	print(guess)
+	print(bottom)
+ 
+	
 		
 def record_score (category, player_guesses, correct_answer, score_history):
 	''' 

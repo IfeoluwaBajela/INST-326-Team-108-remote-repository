@@ -271,5 +271,7 @@ def validate_guess_pro(guess, word_list):
 	if not is_valid:
 		return False, message
 
-		if guess.lower() not in word_list:
+	if guess.lower() not in [w.lower() for w in available_categories:
 			return False, "That is not a recognized word."
+
+	return True, "Valid guess"

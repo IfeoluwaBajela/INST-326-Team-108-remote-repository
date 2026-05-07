@@ -23,6 +23,8 @@ def state (answers, round, attempts):
         print (f"""Try again \n 
                 Round: {round}, Attempts: {attempts}, Points: {self.points}""")
     elif correct == True: 
+		attempts_used = 3 - attempts
+		points = calculate_points(attempts_used)
         round += 1
         attempts == 3
         print (f"""Correct!!! New Round \n 

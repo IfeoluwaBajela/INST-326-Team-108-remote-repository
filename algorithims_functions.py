@@ -62,7 +62,19 @@ def word_display(word, guess):
 	print(guess)
 	print(bottom)
  
-	
+def calculate_points(attempts_used):
+    """
+    Calculates points based on how many attempts the player used.
+    
+    Arguments:
+        attempts_used (int): The number of attempts the player used (1, 2, or 3)
+            	 0 indicates the player failed to guess correctly.
+    
+    Returns:
+        int: Total points earned for that question. (30, 20, 10, or 0)
+    """
+    points_map = {1: 30, 2: 20, 3: 10}
+    return points_map.get(attempts_used, 0)
 		
 def record_score (category, player_guesses, correct_answer, score_history):
 	''' 
@@ -91,6 +103,7 @@ def record_score (category, player_guesses, correct_answer, score_history):
 
 	score_history.append(score_record)
 	return score_record	
+	
 def display_score(score_record):
 	'''
 	Author:Aya Shrestha

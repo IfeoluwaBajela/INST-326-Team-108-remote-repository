@@ -1,6 +1,7 @@
 from argparse import ArgumentParser
 import re 
 import se 
+import sys
 import random
 
 with open("keywords.txt", "r") as file:
@@ -103,7 +104,6 @@ if __name__ == "__main__":
     if args.rules:
         rules_display()
     main()
-    pass
 
-class WordSelection:
+# class WordSelection:
 

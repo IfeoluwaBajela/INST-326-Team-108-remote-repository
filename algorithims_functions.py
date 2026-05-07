@@ -49,7 +49,7 @@ def word_display(word, guess):
  
 	bottom = ""
 	
-	for i in len(word):
+	for i in range (len(word)):
 		if word[i] == guess[i]:
 			bottomtemp = bottom + "G"
 			bottom = bottomtemp
@@ -156,8 +156,7 @@ def guess_select(answer, guess):
 	guess = guess.lower()
 	results = []
 	answer_list = list(answer)
-
-	statuses = ["absent", "absent", "absent", "absent"]
+	statuses = ["absent"]*5
 
 	for i in range(5):
 		if guess[i] == answer_list[i]:

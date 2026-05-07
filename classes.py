@@ -45,9 +45,6 @@ class player():
             return NotImplemented
         return self.highscore > other.highscore
 
-
-
-
 class game():
     
 

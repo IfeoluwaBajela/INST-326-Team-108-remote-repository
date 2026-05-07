@@ -1,6 +1,5 @@
 from argparse import ArgumentParser
 import re 
-import se 
 import sys
 import random
 

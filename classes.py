@@ -51,7 +51,7 @@ class player():
 class game():
     
 
-    def __init__(self, word):
+    def __init__(self):
         pass
     
 def main():
@@ -65,6 +65,10 @@ def parse_args(arglist):
         Expects two mandatory arguments:
         words - A list of words to be used for the game.
         players - names of a players. 
+        
+        Has an addational augment: 
+        -r, --rules: If specfied showcases the rules before the player starts 
+        playing.
         
         Args:
             arglist (list of strings): arguments from the command line

@@ -29,6 +29,16 @@ def state (answers, round, attempts):
                 Round: {round}, Attempts: {attempts}, Points: {self.points}""")
     else: 
         print (f"Round: {round}, Attempts: {attempts}, Points: {self.points}")
+        
+def record_input(self):
+    """Records the response for the player.
+	
+		Returns: 
+	    resp (str): The player's response. 
+	
+    """
+    resp = input(f"{self.name}, input your guess.")
+    return resp
 
 		
 def record_score (category, player_guesses, correct_answer, score_history):

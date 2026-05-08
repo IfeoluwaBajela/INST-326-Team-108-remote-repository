@@ -404,7 +404,6 @@ class game():
 def main():
     """ Creates the game and allows players to play it. 
     """
-    args = parse_args(sys.argv[1:])
 
     if not args.players:
         print("Error: plaease provide a players name.")
@@ -434,7 +433,6 @@ def parse_args(arglist):
     """
      
     parser = ArgumentParser() 
-    parser.add_argument("words", help = "path to word list from a text file.")
     parser.add_argument("players", nargs = "*", help = "Player names")
     parser.add_argument("-r", "--rules", action= "store_true", help= "Displays"
                         "rules")

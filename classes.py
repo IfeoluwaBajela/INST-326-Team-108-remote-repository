@@ -52,53 +52,6 @@ class player():
         return self.highscore > other.highscore
 
 class game():
-    def play(self):
-        """Runs the full game loop."""
-        used_categories = []
-
-        print(f"Welcome, {self.player.name}!")
-
-        while True:
-
-            curr_cat = self.select_categories(used_categories)
-            if curr_cat is None:
-                print("No more categories! Game over.")
-                break
-
-            category_data = next(c for c in self.categories if c["name"] == curr_cat)
-            questions = category_data["items"]
-            print(f"\nCategory: {curr_cat}")
-
-            player_guesses = []
-            correct_answers = [q["answer"] for q in questions]
-
-            for q in questions:
-                print(f"\n{q['question']}")
-                attempts = 3
-                answered = False
-
-                while attempts > 0:
-                    guess = input("Your guess: ").strip()
-                    if guess.lower() == q["answer"].lower():
-                        attempts_used = 3 - attempts + 1
-                        self.points += self.calculate_points(attempts_used)
-                        print(f"Correct! Points: {self.points}")
-                        player_guesses.append(guess)
-                        answered = True
-                        break
-                    else:
-                        attempts -= 1
-                        print(f"Wrong. Attempts left: {attempts}")
-
-                if not answered:
-                    print(f"The answer was: {q['answer']}")
-                    player_guesses.append("")
-
-            #self.display_score()
-
-            if not self.play_again():
-                print(f" Total points: {self.points}")
-                break
             
     def __init__(self, player):
         self.player = player
@@ -144,8 +97,52 @@ class game():
                 {"question": "This is the college code for the College of Business and Management at UMD.", "answer": "BMGT"}
             ]
         }
-    ]
-    
+    ] 
+    def play(self):
+        """Runs the full game loop."""
+        used_categories = []
+
+        print(f"Welcome, {self.player.name}!")
+
+        while True:
+
+            curr_cat = self.select_categories(used_categories)
+            if curr_cat is None:
+                print("No more categories! Game over.")
+                break
+
+            category_data = next(c for c in self.categories if c["name"] == curr_cat)
+            questions = category_data["items"]
+            print(f"\nCategory: {curr_cat}")
+
+            player_guesses = []
+            correct_answers = [q["answer"] for q in questions]
+
+            for q in questions:
+                print(f"\n{q['question']}")
+                attempts = 3
+                answered = False
+
+                while attempts > 0:
+                    guess = input("Your guess: ").strip()
+                    self.guess_display(q['answer'], guess)
+                    if guess.lower() == q["answer"].lower():
+                        attempts_used = 3 - attempts + 1
+                        self.points += self.calculate_points(attempts_used)
+                        print(f"Correct! Points: {self.points}")
+                        player_guesses.append(guess)
+                        answered = True
+                        break
+                    else:
+                        attempts -= 1
+                        print(f"Wrong. Attempts left: {attempts}")
+
+                if not answered:
+                    print(f"The answer was: {q['answer']}")
+                    player_guesses.append("")
+
+            #self.display_score()
+            
     def state (self, is_correct, current_round,  attempts, points):
         """""
         Updates the rounds and attempts a player takes when guessing. After each 
@@ -188,35 +185,43 @@ class game():
             guess (string): The guess that the player inputed
 
         side effects:
-            Prints the player's guess and then prints another line giving the results of the guess. 
+            Prints the player's guess and then prints 
+            another line giving the results of the guess. 
 
     """
     
         word = word.upper()
         guess = guess.upper()
+        extras = 0
+        exes = ""
+        
+        if len(guess) > len(word):
+            extras = len(guess) - len(word)
+            exes = "X" * extras
 
-        if len(word) != len(guess):
-            print("Error: Guess must be the same length as word!")
-            return
+        #if len(word) != len(guess):
+         #   print("Error: Guess must be the same length as word!")
+          #  return
+        
+        length_check = min(len(word), len(guess))
         
         results = ["B"] * len(word)
         word_list = list(word)
 
-        for i in range(len(word)):
+        for i in range(length_check):
             if guess[i] == word[i]:
                 results[i] = "G"
                 word_list[i] = None
 
-        for i in range(len(word)):
+        for i in range(length_check):
             if results[i] == "G":
-                    continue
+                continue
 
             if guess[i] in word_list:
                     results[i] = "Y"
                     word_list[word_list.index(guess[i])] = None
         
-        print(guess)
-        print("".join(results))
+        print("".join(results) + exes)
     
     def calculate_points(self, attempts_used):
         """

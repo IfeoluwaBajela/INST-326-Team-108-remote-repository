@@ -96,7 +96,7 @@ def calculate_points(attempts_used):
     points_map = {1: 30, 2: 20, 3: 10}
     return points_map.get(attempts_used, 0)
 		
-def record_score (category, player_guesses, correct_answer, score_history):
+def record_score (category, player_guesses, correct_answers, score_history):
 	''' 
 	Author:Aya Shrestha
 	Calculates and stores the score the player recieved for that round.
@@ -112,7 +112,7 @@ def record_score (category, player_guesses, correct_answer, score_history):
 
 	num_correct = 0
 	for i in range(5):
-		if player_guesses[i].lower() == correct_answer[i].lower():
+		if player_guesses[i].lower() == correct_answers[i].lower():
 			num_correct += 1
 	score_percent = (num_correct / 5) * 100
 	score_record = {
@@ -158,8 +158,8 @@ def display_score_history(score_history):
     f"Round {i+1}: {score_history[i]['category']} | {score_history[i]['num_correct']}/5 correct | {score_history[i]['score_percent']}%"
     for i in range(len(score_history))
 ]
-for record in records:
-    print(record)
+	for record in records:
+    	print(record)
 
 def guess_select(answer, guess):
 	"""Determines each letter's position status for one guess against the correct
@@ -208,7 +208,7 @@ def run_question_timer(questions, time_limit=120):
 	Returns:
 		list: A list of the player's answers in order.
 	'''
-	players_answers=[]
+	player_answers=[]
 
 	for question_dict in questions:
 		question, answer = (
@@ -330,10 +330,9 @@ def select_categories(categories, used_categories):
               {"name":"Majors","options":["Information Science","Mathematics",
                 "Biology"]}, {"name":"Colleges","options":["CMNS","BSOS","SPH"]}
               ]
-     def valid_category(category):
-      pattern =  r"^[A-Za-z ]+$"
- 
-     return bool(re.fullmatch(pattern, category))
+def valid_category(category):
+	pattern =  r"^[A-Za-z ]+$"
+    return bool(re.fullmatch(pattern, category))
 
 def validate_guess_pro(guess, word_list):
 	is_valid, message = validate_guess(guess)

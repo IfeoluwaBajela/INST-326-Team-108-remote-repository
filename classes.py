@@ -58,8 +58,10 @@ class player():
 
 class game():
     
-    def __init__(self, points = 0):
+    def __init__(self, points = 0, cur_round = 0, attempts = 0):
         self.points = points
+        self.cur_round = cur_round
+        self.attempts = attempts
     
     def state (self, is_correct, current_round, answers, attempts, points):
         """""

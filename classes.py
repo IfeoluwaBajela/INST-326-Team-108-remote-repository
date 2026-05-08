@@ -376,12 +376,6 @@ class game():
             pattern =  r"^[A-Za-z ]+$"
             return bool(re.fullmatch(pattern, categories))
 
-    def validate_guess_pro(self, guess, word_list):
-        if len(guess) !=5 or not guess.isalpha():
-            return False, "guess must be 5 letters."
-        if guess.lower() not in [w.lower() for w in word_list]:
-                return False, "That is not a recognized word."
-        return True, "Valid guess"
 
     def play_again(self):
         """Ask whether the player wants to play the game again..  

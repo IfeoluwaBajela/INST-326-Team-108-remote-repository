@@ -282,7 +282,7 @@ categories = [
     }
 ]
 
-def select_categories(self):
+def select_categories(categories, used_categories):
      """Select a single unused category from options available
      Arguments: 
     
@@ -301,34 +301,38 @@ def select_categories(self):
     name to prevent reuse in future rounds.
 
     """
-   available_categories = []
+     available_categories = []
     
-    for category in categories: 
+     for category in categories: 
         if category["name"] not in used_categories:
             available_categories.append(category)
             
-    if not available_categories:    
+     if not available_categories:    
         return None 
    
-    selected_category = available_categories[0]    
+     selected_category = available_categories[0]    
     
-    selected_category["items"].append(selected_category["items"].pop(0))
+     selected_category["items"].append(selected_category["items"].pop(0))
     
-    used_categories.append(selected_category["name"])
+     used_categories.append(selected_category["name"])
     
-    return selected_category["name"]
-
-def valid_category(category):
-    pattern =  r"^[A-Za-z ]+$"
-
-    return bool(re.fullmatch(pattern, category))
+     return selected_category["name"] 
+	
+     categories = [{"name": "Buildings","options":["ESJ","STAMP","Mckelding"]},
+              {"name":"Majors","options":["Information Science","Mathematics",
+                "Biology"]}, {"name":"Colleges","options":["CMNS","BSOS","SPH"]}
+              ]
+     def valid_category(category):
+      pattern =  r"^[A-Za-z ]+$"
+ 
+     return bool(re.fullmatch(pattern, category))
 
 def validate_guess_pro(guess, word_list):
 	is_valid, message = validate_guess(guess)
 	if not is_valid:
 		return False, message
 
-	if guess.lower() not in [w.lower() for w in available_categories:
+	if guess.lower() not in lowercase_words:
 			return False, "That is not a recognized word."
-
+    
 	return True, "Valid guess"

@@ -39,7 +39,7 @@ class player():
         """Compares two players highscores."""
         if not isinstance(other, player):
             return NotImplemented
-        return self.highscore == self.highscore
+        return self.highscore == other.highscore
     
     def __lt__(self, other):
         """Checks whether a player's highscore is less than another player's."""
@@ -420,7 +420,21 @@ class game():
 def main():
     """ Creates the game and allows players to play it. 
     """
-    pass
+    args = parse_args(sys.argv[1:])
+
+    if not args.players:
+        print("Error: plaease provide a players name.")
+        return
+    active_players = [player(name, 0) for name in args.players]
+
+    print(f"Welcome {', ', join([p.name for p in active_players])}!")
+
+    try:
+        with open(args.words, "r") as f:
+            word_bank = [line.strip() for line in f if line.strip()]
+    except FileNotFoundError:
+        print(f"error: could not find file {args.words}")
+        return
     
 def parse_args(arglist):
     """Parses argument command lines

@@ -401,11 +401,11 @@ class game():
         name to prevent reuse in future rounds.
 
         """
-        available_categories = []
-        
-        for category in self.categories: 
-            if category["name"] not in used_categories:
-                available_categories.append(category)
+        available_categories = [
+            category for category in self.categories
+            if category["name"] not in used_categories
+        ]
+    
                 
         if not available_categories:    
             return None 

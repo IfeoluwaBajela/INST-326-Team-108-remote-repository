@@ -2,6 +2,7 @@ from argparse import ArgumentParser
 import re 
 import sys
 import random
+import time
 
 #with open("keywords.txt", "r") as file:
  #   w_bank = [line.strip().lower() for line in file if line.strip()]
@@ -60,7 +61,7 @@ class game():
     def __init__(self, points = 0):
         self.points = points
     
-    def state (is_correct, current_round, answers, attempts, points):
+    def state (self, is_correct, current_round, answers, attempts, points):
         """""
         Updates the rounds and attempts a player takes when guessing. After each 
         guess prints whether the player got it right or not, if the round has 
@@ -88,13 +89,13 @@ class game():
         
         elif is_correct:
             attempts_used = 4 - attempts
-            points += calcualte_points(attempts_used)
+            points += calculate_points(attempts_used)
             current_round +=1
             attempts = 3
             print(f"Correct! New Round \nRound: {current_round}, Attempts: {attempts}, Points: {points}")
         return current_round, attempts, points    
         
-    def word_display(word, guess):
+    def word_display(self, word, guess):
         """Displays the word and whether your guesses are correct or not. 
 
         args:
@@ -121,18 +122,18 @@ class game():
                 results[i] = "G"
                 word_list[i] = None
 
-            for i in range(len(word)):
-                if results[i] == "G":
+        for i in range(len(word)):
+            if results[i] == "G":
                     continue
 
-                if guess[i] in word_list:
-                    results[i] == "Y"
-                word_list[word_list.index(guess[i])] = None
+            if guess[i] in word_list:
+                    results[i] = "Y"
+                    word_list[word_list.index(guess[i])] = None
         
         print(guess)
         print("".join(results))
     
-    def calculate_points(attempts_used):
+    def calculate_points(self, attempts_used):
         """
         Calculates points based on how many attempts the player used.
         
@@ -243,9 +244,6 @@ class game():
             }
             results.append(item)
         return results
-
-    import time
-
     def run_question_timer(questions, time_limit=120):
         '''
         Author: Aya Shrestha

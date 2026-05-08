@@ -28,7 +28,7 @@ def state (is_correct, current_round, answers, attempts, points):
     
     elif is_correct:
         attempts_used = 4 - attempts
-        points += calcualte_points(attempts_used)
+        points += calculate_points(attempts_used)
         current_round +=1
         attempts = 3
         print(f"Correct! New Round \nRound: {current_round}, Attempts: {attempts}, Points: {points}")

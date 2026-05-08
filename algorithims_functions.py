@@ -1,4 +1,3 @@
-import re
 
 def state (is_correct, current_round, answers, attempts, points):
     """""
@@ -200,6 +199,7 @@ import time
 
 def run_question_timer(self, questions, time_limit=120):
 	'''
+	Author: Aya Shrestha
 	Technique: Sequence Unpacking
 	Runs through all 5 questiosn with a timer for each.
 

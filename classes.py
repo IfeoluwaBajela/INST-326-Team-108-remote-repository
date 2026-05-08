@@ -99,7 +99,7 @@ class game():
         }
     ]
     
-    def state (self, is_correct, current_round, answers, attempts, points):
+    def state (self, is_correct, current_round,  attempts, points):
         """""
         Updates the rounds and attempts a player takes when guessing. After each 
         guess prints whether the player got it right or not, if the round has 
@@ -126,7 +126,7 @@ class game():
                     Round: {current_round}, Attempts: {attempts}, Points: {points}""")
         
         elif is_correct:
-            attempts_used = 4 - attempts
+            attempts_used = 3 - attempts
             points += self.calculate_points(attempts_used)
             current_round +=1
             attempts = 3
@@ -147,7 +147,7 @@ class game():
     
         word = word.upper()
         guess = guess.upper()
-        
+
         if len(word) != len(guess):
             print("Error: Guess must be the same length as word!")
             return
@@ -318,7 +318,7 @@ class game():
         return player_answers
             
             
-    def select_categories(self, categories, used_categories):
+    def select_categories(self,used_categories):
         """Select a single unused category from options available
         Arguments: 
         
@@ -339,7 +339,7 @@ class game():
         """
         available_categories = []
         
-        for category in categories: 
+        for category in self.categories: 
             if category["name"] not in used_categories:
                 available_categories.append(category)
                 
@@ -354,9 +354,9 @@ class game():
         
         return selected_category["name"]
         
-    def valid_category(self, categories):
+    def valid_category(self, category):
             pattern =  r"^[A-Za-z ]+$"
-            return bool(re.fullmatch(pattern, categories))
+            return bool(re.fullmatch(pattern, category))
 
 
     def play_again(self):
@@ -384,18 +384,24 @@ class game():
 def main():
     """ Creates the game and allows players to play it. 
     """
+    args = parse_args(sys.argv[1:])
+    if not args.players:
+        print("Error: Please provide a player's name.")
+        return
+    active_players = [player(name) for name in args.players]
 
-    gamer = player(args.players)
-    g = game(gamer)
-    
-    con = True
+    used_categories = []
+    for gamer in active_players:
+        g = game(gamer)
+        con = True
 
-        curr_cat = g.select_categories()
-        
-    while con:
-        
-        
-        con = g.play_again()
+        while con:
+            curr_cat = g.select_categories(used_categories)
+
+            if curr_cat is None:
+                print("No more categories available")
+                break 
+            con = g.play_again()
     
 def parse_args(arglist):
     """Parses argument command lines

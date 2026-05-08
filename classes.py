@@ -243,7 +243,9 @@ class game():
         '''
         print("\nScore History")
         records = [
-        f"Round {i+1}: {score_history[i]['category']} |{score_history[i]['num_correct']}/5 correct | {score_history[i]['score_percent']}%"
+        f"Round {i+1}: {score_history[i]['category']} |"
+        f" {score_history[i]['num_correct']}/5 correct|"
+        f" {score_history[i]['score_percent']}%"
         for i in range(len(score_history))
     ]
         for record in records:
@@ -320,8 +322,8 @@ class game():
             player_answers.append(player_answer)
 
         results = [
-            f" Q{i + 1}: {"Correct" if player_answers[i].lower() == questions[i]['answer'].lower() 
-            else "Incorrect"} - answer was {questions[i]["answer"]}"
+            f" Q{i + 1}: {'Correct' if player_answers[i].lower() == questions[i]['answer'].lower()
+            else 'Incorrect'} - answer was {questions[i]['answer']}"
 
             for i in range(len(questions))
         ]
@@ -410,7 +412,7 @@ def main():
         return
     active_players = [player(name, 0) for name in args.players]
 
-    print(f"Welcome {', '. join([p.name for p in active_players])}!")
+    print(f"Welcome {', '.join([p.name for p in active_players])}!")
     
     
 def parse_args(arglist):

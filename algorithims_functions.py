@@ -239,16 +239,58 @@ def run_question_timer(questions, time_limit=120):
 	return player_answers
 		
 		
+categories = [
+    {
+        "name": "Majors",
+        "items": [
+            {"question": "This major focuses on how people interact with data, technology, and information systems.", "answer": "Information Science"},
+            {"question": "This major studies living organisms.", "answer": "Biology"},
+            {"question": "This major focuses on programming, algorithms, and software development.", "answer": "Computer Science"},
+            {"question": "This major deals with circuits, power systems, and electronic devices.", "answer": "Electrical Engineering"},
+            {"question": "This major focuses on analyzing, developing, and evaluating solutions to complex societal issues.", "answer": "Public Policy"}
+        ]
+    },
+    {
+        "name": "Buildings",
+        "items": [
+            {"question": "This building is the central hub for international education, cultural programs, and academic units.", "answer": "HJ Patterson"},
+            {"question": "This facility is UMD's main gym and fitness center for students.", "answer": "Eppley Recreation Center"},
+            {"question": "This is UMD's largest library, located at the heart of campus.", "answer": "McKeldin Library"},
+            {"question": "This building is UMD's main student union, with activities, study spaces, and the campus bookstores.", "answer": "STAMP"},
+            {"question": "This building is home to UMD's computer science program.", "answer": "Brendan Iribe Center"}
+        ]
+    },
+    {
+        "name": "Minors",
+        "items": [
+            {"question": "This minor teaches you how to analyze and interpret large sets of data.", "answer": "Data Science"},
+            {"question": "This minor explores stars, planets, galaxies, and the universe.", "answer": "Astronomy"},
+            {"question": "This minor focuses on developing skills in fiction, poetry, and storytelling.", "answer": "Creative Writing"},
+            {"question": "This minor covers how businesses use data to make smarter decisions.", "answer": "Business Analytics"},
+            {"question": "This minor covers property markets, investment, and land development.", "answer": "Real Estate"}
+        ]
+    },
+    {
+        "name": "Colleges",
+        "items": [
+            {"question": "This is the college code for the College of Computer, Mathematical, and Natural Sciences at UMD.", "answer": "CMNS"}, 
+            {"question": "This is the college code for the College of Information Studies at UMD.", "answer": "INFO"},
+            {"question": "This is the college code for the A. James Clark School of Engineering at UMD.", "answer": "ENGR"},
+            {"question": "This is the college code for the College of Arts and Humanities at UMD.", "answer": "ARHU"},
+            {"question": "This is the college code for the College of Business and Management at UMD.", "answer": "BMGT"}
+        ]
+    }
+]
 
-def select_categories(categories, used_categories):
-    """Select a single unused category from options available
-    Arguments: 
+def select_categories(self):
+     """Select a single unused category from options available
+     Arguments: 
     
     categories(list of dict): A list where each element is a dictionary 
     representing each category to be used.
     
     Used categories(str): All the categories that have been 
-    used in a previous round that should be avoided. 
+        used in a previous round that should be avoided. 
     
     Returns:
     str: The name of the selected category for the current round.
@@ -259,9 +301,7 @@ def select_categories(categories, used_categories):
     name to prevent reuse in future rounds.
 
     """
-    
-    
-    available_categories = []
+   available_categories = []
     
     for category in categories: 
         if category["name"] not in used_categories:
@@ -272,20 +312,13 @@ def select_categories(categories, used_categories):
    
     selected_category = available_categories[0]    
     
-    options = selected_category["options"]
-    selected_option = options[0]
-    
-    selected_category["options"].append(selected_category["options"].pop(0))
+    selected_category["items"].append(selected_category["items"].pop(0))
     
     used_categories.append(selected_category["name"])
     
-    return selected_category["name"] 
-	
-	categories = [{"name": "Buildings","options":["ESJ","STAMP","Mckelding"]},
-              {"name":"Majors","options":["Information Science","Mathematics",
-                "Biology"]}, {"name":"Colleges","options":["CMNS","BSOS","SPH"]}
-              ]
-	def valid_category(category):
+    return selected_category["name"]
+
+def valid_category(category):
     pattern =  r"^[A-Za-z ]+$"
 
     return bool(re.fullmatch(pattern, category))

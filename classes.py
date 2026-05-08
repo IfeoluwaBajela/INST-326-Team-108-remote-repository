@@ -275,7 +275,7 @@ class game():
         '''
         print("Total Score")
         print(f"Category: {score_record['category']}")
-        print(f"Accuracy: {score_record['num_correct']}/5")
+        print(f"Accuracy: {score_record['num_correct']}/5" ({score_record['num_correct']* 20}%)")
         print(f"Score: {score_record['score_percent']}%")
 
         if score_record['num_correct'] == 5:
@@ -331,7 +331,7 @@ class game():
             time_limit (int): Time allowed per question (120 seconds).
 
         Returns:
-            list: A list of the player's answers in order.
+            list: A list of the player's answers in order. An empty string is recorded if time is up and user has not answered.
         '''
         player_answers=[]
 

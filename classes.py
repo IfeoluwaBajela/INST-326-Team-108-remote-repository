@@ -463,8 +463,9 @@ def main(name):
      con = g.play_again()   
 
 def  file_loader(data):
-    with open (filename, "r") as file:
-        return 
+    with open ("data", "r") as file:
+        fileloading = json.loadfile
+return 
 
          
     

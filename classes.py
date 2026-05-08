@@ -284,6 +284,7 @@ class game():
             }
             results.append(item)
         return results
+    
     def run_question_timer(self, questions, time_limit=120):
         '''
         Author: Aya Shrestha

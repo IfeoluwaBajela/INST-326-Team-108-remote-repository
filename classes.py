@@ -58,10 +58,50 @@ class player():
 
 class game():
     
-    def __init__(self, points = 0, cur_round = 0, attempts = 0):
-        self.points = points
-        self.cur_round = cur_round
-        self.attempts = attempts
+    def __init__(self):
+        self.points = 0
+        self.categories = [
+        {
+            "name": "Majors",
+            "items": [
+                {"question": "This major focuses on how people interact with data, technology, and information systems.", "answer": "Information Science"},
+                {"question": "This major studies living organisms.", "answer": "Biology"},
+                {"question": "This major focuses on programming, algorithms, and software development.", "answer": "Computer Science"},
+                {"question": "This major deals with circuits, power systems, and electronic devices.", "answer": "Electrical Engineering"},
+                {"question": "This major focuses on analyzing, developing, and evaluating solutions to complex societal issues.", "answer": "Public Policy"}
+            ]
+        },
+        {
+            "name": "Buildings",
+            "items": [
+                {"question": "This building is the central hub for international education, cultural programs, and academic units.", "answer": "HJ Patterson"},
+                {"question": "This facility is UMD's main gym and fitness center for students.", "answer": "Eppley Recreation Center"},
+                {"question": "This is UMD's largest library, located at the heart of campus.", "answer": "McKeldin Library"},
+                {"question": "This building is UMD's main student union, with activities, study spaces, and the campus bookstores.", "answer": "STAMP"},
+                {"question": "This building is home to UMD's computer science program.", "answer": "Brendan Iribe Center"}
+            ]
+        },
+        {
+            "name": "Minors",
+            "items": [
+                {"question": "This minor teaches you how to analyze and interpret large sets of data.", "answer": "Data Science"},
+                {"question": "This minor explores stars, planets, galaxies, and the universe.", "answer": "Astronomy"},
+                {"question": "This minor focuses on developing skills in fiction, poetry, and storytelling.", "answer": "Creative Writing"},
+                {"question": "This minor covers how businesses use data to make smarter decisions.", "answer": "Business Analytics"},
+                {"question": "This minor covers property markets, investment, and land development.", "answer": "Real Estate"}
+            ]
+        },
+        {
+            "name": "Colleges",
+            "items": [
+                {"question": "This is the college code for the College of Computer, Mathematical, and Natural Sciences at UMD.", "answer": "CMNS"}, 
+                {"question": "This is the college code for the College of Information Studies at UMD.", "answer": "INFO"},
+                {"question": "This is the college code for the A. James Clark School of Engineering at UMD.", "answer": "ENGR"},
+                {"question": "This is the college code for the College of Arts and Humanities at UMD.", "answer": "ARHU"},
+                {"question": "This is the college code for the College of Business and Management at UMD.", "answer": "BMGT"}
+            ]
+        }
+    ]
     
     def state (self, is_correct, current_round, answers, attempts, points):
         """""
@@ -298,49 +338,6 @@ class game():
         return player_answers
             
             
-    categories = [
-        {
-            "name": "Majors",
-            "items": [
-                {"question": "This major focuses on how people interact with data, technology, and information systems.", "answer": "Information Science"},
-                {"question": "This major studies living organisms.", "answer": "Biology"},
-                {"question": "This major focuses on programming, algorithms, and software development.", "answer": "Computer Science"},
-                {"question": "This major deals with circuits, power systems, and electronic devices.", "answer": "Electrical Engineering"},
-                {"question": "This major focuses on analyzing, developing, and evaluating solutions to complex societal issues.", "answer": "Public Policy"}
-            ]
-        },
-        {
-            "name": "Buildings",
-            "items": [
-                {"question": "This building is the central hub for international education, cultural programs, and academic units.", "answer": "HJ Patterson"},
-                {"question": "This facility is UMD's main gym and fitness center for students.", "answer": "Eppley Recreation Center"},
-                {"question": "This is UMD's largest library, located at the heart of campus.", "answer": "McKeldin Library"},
-                {"question": "This building is UMD's main student union, with activities, study spaces, and the campus bookstores.", "answer": "STAMP"},
-                {"question": "This building is home to UMD's computer science program.", "answer": "Brendan Iribe Center"}
-            ]
-        },
-        {
-            "name": "Minors",
-            "items": [
-                {"question": "This minor teaches you how to analyze and interpret large sets of data.", "answer": "Data Science"},
-                {"question": "This minor explores stars, planets, galaxies, and the universe.", "answer": "Astronomy"},
-                {"question": "This minor focuses on developing skills in fiction, poetry, and storytelling.", "answer": "Creative Writing"},
-                {"question": "This minor covers how businesses use data to make smarter decisions.", "answer": "Business Analytics"},
-                {"question": "This minor covers property markets, investment, and land development.", "answer": "Real Estate"}
-            ]
-        },
-        {
-            "name": "Colleges",
-            "items": [
-                {"question": "This is the college code for the College of Computer, Mathematical, and Natural Sciences at UMD.", "answer": "CMNS"}, 
-                {"question": "This is the college code for the College of Information Studies at UMD.", "answer": "INFO"},
-                {"question": "This is the college code for the A. James Clark School of Engineering at UMD.", "answer": "ENGR"},
-                {"question": "This is the college code for the College of Arts and Humanities at UMD.", "answer": "ARHU"},
-                {"question": "This is the college code for the College of Business and Management at UMD.", "answer": "BMGT"}
-            ]
-        }
-    ]
-
     def select_categories(self, categories, used_categories):
         """Select a single unused category from options available
         Arguments: 
@@ -375,7 +372,7 @@ class game():
         
         used_categories.append(selected_category["name"])
         
-        return selected_category["name"] 
+        return selected_category["name"]
         
     def valid_category(self, categories):
             pattern =  r"^[A-Za-z ]+$"
@@ -420,13 +417,7 @@ def main():
     active_players = [player(name, 0) for name in args.players]
 
     print(f"Welcome {', '. join([p.name for p in active_players])}!")
-
-    try:
-        with open(args.words, "r") as f:
-            word_bank = [line.strip() for line in f if line.strip()]
-    except FileNotFoundError:
-        print(f"error: could not find file {args.words}")
-        return
+    
     
 def parse_args(arglist):
     """Parses argument command lines

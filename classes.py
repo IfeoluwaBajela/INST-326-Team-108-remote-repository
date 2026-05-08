@@ -7,7 +7,12 @@ import json
 
 class player():
     """Class for a player. Each player has some sort of name and a highscore 
-    that is updated. 
+    that is updated. Also has a function that allows it record input when 
+    playing the game.
+    
+        Attributes: 
+            name (String): Name of the players name.
+            highscore (Int): The players's highscore. 
     
     """
     def __init__(self, name, highscore = 0):
@@ -16,44 +21,61 @@ class player():
     
     def record_input(self):
         """Records the response for the player.
-	
+
+        Author Jeremy ND
+        
+        Side Effects: Prints a question in the terminal for the user.
+        
 		Returns: 
 	    resp (str): The player's response. 
-	
-    """
+        """
         resp = input(f"{self.name}, input your guess.")
         return resp
     
     
     def __repr__(self):
+        """Prints formal information for the class.
+            Author Jeremy ND
+        """
         return f"player(name={self.name}, highscore={self.highscore})"
     
     def __add__(self, other):
-        """Creates a new player by adding the highscores of two players"""
+        """Creates a new player by adding the highscores of two players
+            Author Jeremy ND
+        """
         return player(self.name, self.highscore + other.highscore)
     
     def __eq__(self, other):
-        """Compares two players highscores."""
+        """Compares two players highscores.
+            Author Jeremy ND
+        """
         if not isinstance(other, player):
             return NotImplemented
         return self.highscore == other.highscore
     
     def __lt__(self, other):
-        """Checks whether a player's highscore is less than another player's."""
+        """Checks whether a player's highscore is less than another player's.
+            Author Jeremy ND
+        """
         if not isinstance(other, player):
             return NotImplemented
         return self.highscore < other.highscore
     
     def __gt__(self, other):
-        """Checks whether a player's highscore is greater than another 
-            player's
-            """
+        """Checks whether a player's highscore is greater than another player's
+            Author Jeremy ND    
+        """
         if not isinstance(other, player):
             return NotImplemented
         return self.highscore > other.highscore
 
 class game():
-            
+    """ Class that helps runs and play the game.
+    
+        Attributes:
+        player (Player): Player to be used. 
+    
+    """
     def __init__(self, player):
         self.player = player
         self.points = 0
@@ -141,47 +163,14 @@ class game():
                 if not answered:
                     print(f"The answer was: {q['answer']}")
                     player_guesses.append("")
-
-            #self.display_score()
-            
-    def state (self, is_correct, current_round,  attempts, points):
-        """""
-        Updates the rounds and attempts a player takes when guessing. After each 
-        guess prints whether the player got it right or not, if the round has 
-        updated and showcases current round, attempts and points. 
-        
-        Arguments: 
-            Answers (Dictionary): Dictonary of answers
-            Round(int): The current round.
-
-        Side Effects:
-            Updates the round and prints a message telling the score, round and 
-            events. Prints a statment into the command line. 
-        """""
-        
-        if not is_correct and attempts == 0:
-            current_round += 1
-            attempts = 3
-            print (f"""Try again. New Round \n 
-                    Round: {current_round}, Attempts: {attempts}, Points: {points}""")
-    
-        elif not is_correct and attempts != 0:
-            attempts -= 1
-            print (f"""Try again \n 
-                    Round: {current_round}, Attempts: {attempts}, Points: {points}""")
-        
-        elif is_correct:
-            attempts_used = 3 - attempts
-            points += self.calculate_points(attempts_used)
-            current_round +=1
-            attempts = 3
-            print(f"Correct! New Round \nRound: {current_round}, Attempts: {attempts}, Points: {points}")
-        return current_round, attempts, points    
+               
         
     def guess_display(self, word, guess):
         """Displays the word and whether your guesses are correct or not. 
 
-    args:
+        Author Jeremy ND
+        
+        args:
             word (string): The word that is being guesssed.
             guess (string): The guess that the player inputed
 
@@ -227,6 +216,8 @@ class game():
     def calculate_points(self, attempts_used):
         """
         Calculates points based on how many attempts the player used.
+        
+        Author:Aya Shrestha
         
         Arguments:
             attempts_used (int): The number of attempts the player used (1, 2, or 3)
@@ -428,10 +419,12 @@ class game():
 
 
     def play_again(self):
-        """Ask whether the player wants to play the game again..  
+        """Ask whether the player wants to play the game again.
+        
+            Author Jeremy ND
 
             side effects:
-                Ask for player input on whether the game returns. . 
+                Ask for player input on whether the game returns. 
 
             Returns:
                 boolean: True or false depending on whether the player wants 
@@ -449,12 +442,18 @@ class game():
                 print ("Invalid input")        
         
 
-def main(name):
+def main(name, filePath = None):
     """ Creates the game and allows players to play it. 
+    
+        Args:
+        name(string): Name of player to be used to create the player class.
     """
+    
     gamer = player(name)
     g = game(gamer)
     
+    if filePath is not None: 
+        g.categories.append(filePath)
     con = True
     
     while con:
@@ -471,7 +470,9 @@ def  file_loader(data):
     
 def parse_args(arglist):
     """Parses argument command lines
-    
+
+        Author: Jeremy ND
+        
         Expects two mandatory arguments:
         words - A list of words to be used for the game.
         players - names of a players. 
@@ -492,12 +493,15 @@ def parse_args(arglist):
     parser.add_argument("players", nargs = "*", help = "Player names")
     parser.add_argument("-r", "--rules", action= "store_true", help= "Displays"
                         "rules")
+    parser.add_argument('--input', type= parser.FileType('r'), 
+                        help= 'Optional input file')
     
     return parser.parse_args(arglist)
 
 def rules_display():
     """Displays rules of the game. To be called using -r or -rules. 
-    Side Effects:
+        Author Jeremy N
+        Side Effects:
         Prints the rules of the games. 
     
     """

@@ -1,3 +1,6 @@
+import re
+import time
+
 def state (is_correct, current_round, answers, attempts, points):
     """""
     Updates the rounds and attempts a player takes when guessing. After each 

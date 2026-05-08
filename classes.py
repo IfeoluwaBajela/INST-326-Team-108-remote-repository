@@ -94,11 +94,12 @@ class game():
                     print(f"The answer was: {q['answer']}")
                     player_guesses.append("")
 
-            self.display_score()
+            #self.display_score()
 
             if not self.play_again():
                 print(f" Total points: {self.points}")
                 break
+            
     def __init__(self, player):
         self.player = player
         self.points = 0
@@ -427,18 +428,19 @@ class game():
                 print ("Invalid input")        
         
     
-def main():
+def main(name):
     """ Creates the game and allows players to play it. 
     """
-    	g = game(gamer)
-        con = True
-		
-
-        while con: 
-    		g.play()
-
-            
-            con = g.play_again()
+    gamer = player(name)
+    g = game(gamer)
+    
+    con = True
+    
+    while con:
+     
+     g.play()
+     con = g.play_again()    
+         
     
 def parse_args(arglist):
     """Parses argument command lines
@@ -484,7 +486,7 @@ if __name__ == "__main__":
     args = parse_args(sys.argv[1:])
     if args.rules:
         rules_display()
-    main()
+    main(args.players)
 
 # class WordSelection:
 

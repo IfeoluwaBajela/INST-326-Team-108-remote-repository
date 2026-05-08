@@ -146,7 +146,7 @@ def display_score(score_record):
 	else: 
 		print("\nKeep trying! You'll get the hang of it")
 
-def display_score_history(score_history):
+def display_score_history(self, score_history):
 	'''
 	Author: Aya Shrestha
 	Technique: Comprehension
@@ -161,7 +161,7 @@ def display_score_history(score_history):
     for i in range(len(score_history))
 ]
 	for record in records:
-    	print(record)
+         print(record)
 
 def guess_select(answer, guess):
 	"""Determines each letter's position status for one guess against the correct
@@ -198,7 +198,7 @@ def guess_select(answer, guess):
 
 import time
 
-def run_question_timer(questions, time_limit=120):
+def run_question_timer(self, questions, time_limit=120):
 	'''
 	Technique: Sequence Unpacking
 	Runs through all 5 questiosn with a timer for each.
@@ -229,7 +229,8 @@ def run_question_timer(questions, time_limit=120):
 				print(" Time's up!")
 				break
 
-			player_answer = get_player_guess(answer)
+			player_answer = input("your guess: ").strip()
+
 
 			if player_answer:
 				break
@@ -292,7 +293,7 @@ categories = [
     }
 ]
 
-def select_categories(categories, used_categories):
+def select_categories(self, categories, used_categories):
      """Select a single unused category from options available
      Arguments: 
     
@@ -332,16 +333,16 @@ def select_categories(categories, used_categories):
               {"name":"Majors","options":["Information Science","Mathematics",
                 "Biology"]}, {"name":"Colleges","options":["CMNS","BSOS","SPH"]}
               ]
-def valid_category(category):
-	pattern =  r"^[A-Za-z ]+$"
-    return bool(re.fullmatch(pattern, category))
+     def valid_category(category):
+        pattern = r"^[A-Za-z]+$"
+        return bool(re.fullmatch(pattern, category))
 
-def validate_guess_pro(guess, word_list):
-	is_valid, message = validate_guess(guess)
-	if not is_valid:
-		return False, message
+is_valid, message = validate_guess(guess)
+if guess.lower() not in lowercase_words:
 
-	if guess.lower() not in lowercase_words:
-			return False, "That is not a recognized word."
-    
-	return True, "Valid guess"
+	def validate_guess_pro(self, guess, word_list):
+		if len(guess) !=5 or not guess.isalpha():
+			return False, "Guess must be 5 letters long."
+		if guess.lower() not in [w.lower() for w in word_list]:
+			return False, "Not a recognized word."
+		return True, "Valid guess"

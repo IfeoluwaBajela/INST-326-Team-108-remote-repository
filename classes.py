@@ -89,13 +89,13 @@ class game():
         
         elif is_correct:
             attempts_used = 4 - attempts
-            points += calculate_points(attempts_used)
+            points += self.calculate_points(attempts_used)
             current_round +=1
             attempts = 3
             print(f"Correct! New Round \nRound: {current_round}, Attempts: {attempts}, Points: {points}")
         return current_round, attempts, points    
         
-    def word_display(self, word, guess):
+    def word_display(word, guess):
         """Displays the word and whether your guesses are correct or not. 
 
         args:
@@ -147,7 +147,7 @@ class game():
         points_map = {1: 30, 2: 20, 3: 10}
         return points_map.get(attempts_used, 0)
             
-    def record_score (category, player_guesses, correct_answer, score_history):
+    def record_score (self, category, player_guesses, correct_answer, score_history):
         ''' 
         Author:Aya Shrestha
         Calculates and stores the score the player recieved for that round.
@@ -175,7 +175,7 @@ class game():
         score_history.append(score_record)
         return score_record	
         
-    def display_score(score_record):
+    def display_score(self, score_record):
         '''
         Author:Aya Shrestha
         Displays the player's results of one round.
@@ -195,7 +195,7 @@ class game():
         else: 
             print("\nKeep trying! You'll get the hang of it")
 
-    def display_score_history(score_history):
+    def display_score_history(self, score_history):
         '''
         Author: Aya Shrestha
         Technique: Comprehension
@@ -209,10 +209,10 @@ class game():
         f"Round {i+1}: {score_history[i]['category']} | {score_history[i]['num_correct']}/5 correct | {score_history[i]['score_percent']}%"
         for i in range(len(score_history))
     ]
-    for record in records:
-        print(record)
+        for record in records:
+           print(record)
 
-    def guess_select(answer, guess):
+    def guess_select(self, answer, guess):
         """Determines each letter's position status for one guess against the correct
         word based on its position and presence
         Arguments:
@@ -244,7 +244,7 @@ class game():
             }
             results.append(item)
         return results
-    def run_question_timer(questions, time_limit=120):
+    def run_question_timer(self, questions, time_limit=120):
         '''
         Author: Aya Shrestha
         Technique: Sequence Unpacking
@@ -257,7 +257,7 @@ class game():
         Returns:
             list: A list of the player's answers in order.
         '''
-        players_answers=[]
+        player_answers=[]
 
         for question_dict in questions:
             question, answer = (
@@ -276,7 +276,7 @@ class game():
                     print(" Time's up!")
                     break
 
-                player_answer = get_player_guess(answer)
+                player_answer = input("your guess: ").strip()
 
                 if player_answer:
                     break
@@ -339,7 +339,7 @@ class game():
         }
     ]
 
-    def select_categories(categories, used_categories):
+    def select_categories(self, categories, used_categories):
         """Select a single unused category from options available
         Arguments: 
         
@@ -375,22 +375,18 @@ class game():
         
         return selected_category["name"] 
         
-    def valid_category(category):
+    def valid_category(self, category):
             pattern =  r"^[A-Za-z ]+$"
-    
-        return bool(re.fullmatch(pattern, category))
+            return bool(re.fullmatch(pattern, category))
 
-    def validate_guess_pro(guess, word_list):
-        is_valid, message = validate_guess(guess)
-        if not is_valid:
-            return False, message
-
-        if guess.lower() not in lowercase_words:
+    def validate_guess_pro(self, guess, word_list):
+        if len(guess) !=5 or not guess.isalpha():
+            return False, "guess must be 5 letters."
+        if guess.lower() not in [w.lower() for w in word_list]:
                 return False, "That is not a recognized word."
-        
         return True, "Valid guess"
 
-    def play_again():
+    def play_again(self):
         """Displays the word and whether your guesses are correct or not.  
 
             side effects:
@@ -421,7 +417,7 @@ def main():
         return
     active_players = [player(name, 0) for name in args.players]
 
-    print(f"Welcome {', ', join([p.name for p in active_players])}!")
+    print(f"Welcome {', '. join([p.name for p in active_players])}!")
 
     try:
         with open(args.words, "r") as f:

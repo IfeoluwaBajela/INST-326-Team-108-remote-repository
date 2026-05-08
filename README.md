@@ -5,3 +5,5 @@ Remote repository for team 108
 |--------------------|----------------|--------------------------|
 |run_question_timer  | Aya Shrestha    | Sequence unpacking         |
 |display_score       | Aya Shrestha     | f-strings containing expr |
+|                    | Yahir Cruz        |                          |
+|                    | Yahir Cruz         |                         |

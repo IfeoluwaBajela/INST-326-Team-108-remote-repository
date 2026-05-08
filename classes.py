@@ -464,8 +464,8 @@ def main(name):
 
 def  file_loader(data):
     with open ("data", "r") as file:
-        fileloading = json.loadfile
-return 
+        fileloading = json.load(file)
+    return fileloading
 
          
     

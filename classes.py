@@ -3,6 +3,7 @@ import re
 import sys
 import random
 import time
+import json
 
 class player():
     """Class for a player. Each player has some sort of name and a highscore 
@@ -447,7 +448,7 @@ class game():
             else:
                 print ("Invalid input")        
         
-    
+
 def main(name):
     """ Creates the game and allows players to play it. 
     """
@@ -459,7 +460,12 @@ def main(name):
     while con:
      
      g.play()
-     con = g.play_again()    
+     con = g.play_again()   
+
+def  file_loader(data):
+    with open (filename, "r") as file:
+        return 
+
          
     
 def parse_args(arglist):

@@ -9,7 +9,7 @@ class player():
     that is updated. 
     
     """
-    def __init__(self, name, highscore):
+    def __init__(self, name, highscore = 0):
         self.name = name
         self.highscore = highscore
     
@@ -53,7 +53,8 @@ class player():
 
 class game():
     
-    def __init__(self):
+    def __init__(self, player):
+        self.player = player
         self.points = 0
         self.categories = [
         {
@@ -407,12 +408,8 @@ def main():
     """ Creates the game and allows players to play it. 
     """
 
-    if not args.players:
-        print("Error: plaease provide a players name.")
-        return
-    active_players = [player(name, 0) for name in args.players]
-
-    print(f"Welcome {', '.join([p.name for p in active_players])}!")
+    gamer = player(args.players)
+    game(gamer)
     
     
 def parse_args(arglist):

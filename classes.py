@@ -233,25 +233,6 @@ class game():
         else: 
             print("\nKeep trying! You'll get the hang of it")
 
-    def display_score_history(self, score_history):
-        '''
-        Author: Aya Shrestha
-        Technique: Comprehension
-        Displays the score history to the player.
-
-        Parameters:
-            score_history(list): The list of score records
-        '''
-        print("\nScore History")
-        records = [
-        f"Round {i+1}: {score_history[i]['category']} |"
-        f" {score_history[i]['num_correct']}/5 correct|"
-        f" {score_history[i]['score_percent']}%"
-        for i in range(len(score_history))
-    ]
-        for record in records:
-           print(record)
-
     def guess_select(self, answer, guess):
         """Determines each letter's position status for one guess against the correct
         word based on its position and presence
@@ -409,6 +390,8 @@ def main():
     
     con = True
 
+        curr_cat = g.select_categories()
+        
     while con:
         
         

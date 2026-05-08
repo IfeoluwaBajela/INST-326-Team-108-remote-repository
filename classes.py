@@ -282,7 +282,7 @@ class game():
         '''
         print("Total Score")
         print(f"Category: {score_record['category']}")
-        print(f"Accuracy: {score_record['num_correct']}/5" ({score_record['num_correct']* 20}%)")
+        print(f"Accuracy: {score_record['num_correct']}/5 ({score_record['num_correct']* 20}%)")
         print(f"Score: {score_record['score_percent']}%")
 
         if score_record['num_correct'] == 5:

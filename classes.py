@@ -375,11 +375,7 @@ class game():
         
         return selected_category["name"] 
         
-        categories = [{"name": "Buildings","options":["ESJ","STAMP","Mckelding"]},
-                {"name":"Majors","options":["Information Science","Mathematics",
-                    "Biology"]}, {"name":"Colleges","options":["CMNS","BSOS","SPH"]}
-                ]
-        def valid_category(category):
+    def valid_category(category):
             pattern =  r"^[A-Za-z ]+$"
     
         return bool(re.fullmatch(pattern, category))

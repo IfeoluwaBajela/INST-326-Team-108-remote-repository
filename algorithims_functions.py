@@ -1,5 +1,4 @@
 import re
-import time
 
 def state (is_correct, current_round, answers, attempts, points):
     """""

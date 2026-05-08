@@ -373,7 +373,8 @@ class game():
             
             
     def select_categories(self,used_categories):
-        """Select a single unused category from options available
+        """Author:Ifeoluwa Bajela
+        Select a single unused category from options available
         Arguments: 
         
         categories(list of dict): A list where each element is a dictionary 
@@ -409,8 +410,12 @@ class game():
         return selected_category["name"]
         
     def valid_category(self, category):
-            pattern =  r"^[A-Za-z ]+$"
-            return bool(re.fullmatch(pattern, category))
+        """Author: Ifeoluwa Bajela 
+        Regular expression meant to check and validate categories"""
+       
+        pattern = r"^[A-Za-z]+$"
+        return bool(re.fullmatch(pattern,category))
+       
 
 
     def play_again(self):

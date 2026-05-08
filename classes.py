@@ -133,7 +133,7 @@ class game():
             print(f"Correct! New Round \nRound: {current_round}, Attempts: {attempts}, Points: {points}")
         return current_round, attempts, points    
         
-    def word_display(self, word, guess):
+    def guess_display(self, word, guess):
         """Displays the word and whether your guesses are correct or not. 
 
         args:

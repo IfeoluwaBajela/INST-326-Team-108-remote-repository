@@ -52,7 +52,53 @@ class player():
         return self.highscore > other.highscore
 
 class game():
-    
+    def play(self):
+        """Runs the full game loop."""
+        used_categories = []
+
+        print(f"Welcome, {self.player.name}!")
+
+        while True:
+
+            curr_cat = self.select_categories(used_categories)
+            if curr_cat is None:
+                print("No more categories! Game over.")
+                break
+
+            category_data = next(c for c in self.categories if c["name"] == curr_cat)
+            questions = category_data["items"]
+            print(f"\nCategory: {curr_cat}")
+
+            player_guesses = []
+            correct_answers = [q["answer"] for q in questions]
+
+            for q in questions:
+                print(f"\n{q['question']}")
+                attempts = 3
+                answered = False
+
+                while attempts > 0:
+                    guess = input("Your guess: ").strip()
+                    if guess.lower() == q["answer"].lower():
+                        attempts_used = 3 - attempts + 1
+                        self.points += self.calculate_points(attempts_used)
+                        print(f"Correct! Points: {self.points}")
+                        player_guesses.append(guess)
+                        answered = True
+                        break
+                    else:
+                        attempts -= 1
+                        print(f"Wrong. Attempts left: {attempts}")
+
+                if not answered:
+                    print(f"The answer was: {q['answer']}")
+                    player_guesses.append("")
+
+            self.display_score()
+
+            if not self.play_again():
+                print(f" Total points: {self.points}")
+                break
     def __init__(self, player):
         self.player = player
         self.points = 0
@@ -384,23 +430,14 @@ class game():
 def main():
     """ Creates the game and allows players to play it. 
     """
-    args = parse_args(sys.argv[1:])
-    if not args.players:
-        print("Error: Please provide a player's name.")
-        return
-    active_players = [player(name) for name in args.players]
-
-    used_categories = []
-    for gamer in active_players:
-        g = game(gamer)
+    	g = game(gamer)
         con = True
+		
 
-        while con:
-            curr_cat = g.select_categories(used_categories)
+        while con: 
+    		g.play()
 
-            if curr_cat is None:
-                print("No more categories available")
-                break 
+            
             con = g.play_again()
     
 def parse_args(arglist):

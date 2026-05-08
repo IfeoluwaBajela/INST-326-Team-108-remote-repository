@@ -180,7 +180,7 @@ class game():
     def guess_display(self, word, guess):
         """Displays the word and whether your guesses are correct or not. 
 
-        args:
+    args:
             word (string): The word that is being guesssed.
             guess (string): The guess that the player inputed
 
@@ -286,7 +286,9 @@ class game():
             print("\nKeep trying! You'll get the hang of it")
 
     def guess_select(self, answer, guess):
-        """Determines each letter's position status for one guess against the correct
+        """
+        Author- Yahir Cruz
+        Determines each letter's position status for one guess against the correct
         word based on its position and presence
         Arguments:
             answer (Str): the actual targeted word the player is trying to guess

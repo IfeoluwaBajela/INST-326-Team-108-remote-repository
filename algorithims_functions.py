@@ -1,4 +1,4 @@
-def state (answers, round, attempts):
+def state (is_correct, current_round, answers, attempts, points):
     """""
     Updates the rounds and attempts a player takes when guessing. After each 
     guess prints whether the player got it right or not, if the round has 
@@ -13,26 +13,26 @@ def state (answers, round, attempts):
         events. Prints a statment into the command line. 
     """""
     
-    if correct == False and attempts == 0:
-        round += 1
-        attempts == 3
+    if not is_correct and attempts == 0:
+        current_round += 1
+        attempts = 3
         print (f"""Try again. New Round \n 
-                Round: {round}, Attempts: {attempts}, Points: {self.points}""")
-    elif correct == False and attempts != 0:
+                Round: {current_round}, Attempts: {attempts}, Points: {points}""")
+   
+    elif not is_correct and attempts != 0:
         attempts -= 1
         print (f"""Try again \n 
-                Round: {round}, Attempts: {attempts}, Points: {self.points}""")
-    elif correct == True: 
-		attempts_used = 3 - attempts
-		points = calculate_points(attempts_used)
-        round += 1
-        attempts == 3
-        print (f"""Correct! New Round \n 
-                Round: {round}, Attempts: {attempts}, Points: {self.points}""")
-    else: 
-        print (f"Round: {round}, Attempts: {attempts}, Points: {self.points}")
-        
-def record_input(self):
+                Round: {current_round}, Attempts: {attempts}, Points: {points}""")
+    
+    elif is_correct:
+        attempts_used = 4 - attempts
+        points += calcualte_points(attempts_used)
+        current_round +=1
+        attempts = 3
+        print(f"Correct! New Round \nRound: {current_round}, Attempts: {attempts}, Points: {points}")
+    return current_round, attempts, points
+
+def record_input(player_name):
     """Records the response for the player.
 	
 		Returns: 
@@ -47,22 +47,31 @@ def word_display(word, guess):
  
 	#Might go into another method depending on how code looks
  
-	bottom = ""
+	word = word.upper()
+	guess = guess.upper()
 	
-	for i in range (len(word)):
-		if word[i] == guess[i]:
-			bottomtemp = bottom + "G"
-			bottom = bottomtemp
-		else:
-			if guess[i] in word:
-				bottomtemp = bottom + "Y"
-				bottom = bottomtemp
-			else:
-				bottomtemp = bottom + "B"
-				bottom = bottomtemp
+	if len(word) != len(guess):
+		print("Error: Guess must be the same length as word!")
+		return
+	
+	results = ["B"] * len(word)
+	word_list = list(word)
+
+	for i in range(len(word)):
+		if guess[i] == word[i]:
+			results[i] = "G"
+			word_list[i] = None
+
+		for i in range(len(word)):
+			if results[i] == "G":
+				continue
+
+			if guess[i] in word_list:
+				results[i] == "Y"
+			word_list[word_list.index(guess[i])] = None
     
 	print(guess)
-	print(bottom)
+	print("".join(results))
  
 def calculate_points(attempts_used):
     """
@@ -176,7 +185,8 @@ def guess_select(answer, guess):
 		results.append(item)
 	return results
 
-	
+import time
+
 def run_question_timer(questions, time_limit=120):
 	'''
 	Author: Aya Shrestha
@@ -197,9 +207,9 @@ def run_question_timer(questions, time_limit=120):
 			question_dict["question"],
 			question_dict["answer"]
 		)
-		print(f"{question}")
-
+		print(f"\nQuestion: {question}")
 		start_time = time.time()
+		
 		player_answer = ""
 
 		while True:

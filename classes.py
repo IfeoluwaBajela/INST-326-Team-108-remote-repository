@@ -384,13 +384,14 @@ class game():
         return True, "Valid guess"
 
     def play_again(self):
-        """Displays the word and whether your guesses are correct or not.  
+        """Ask whether the player wants to play the game again..  
 
             side effects:
-                Prints the player's guess and then prints another line giving the results of the guess. 
+                Ask for player input on whether the game returns. . 
 
             Returns:
-                boolean: True or false depending on whether the player wants to play again or not. 
+                boolean: True or false depending on whether the player wants 
+                to play again or not. 
 
         """
         while True: 
@@ -411,6 +412,12 @@ def main():
     gamer = player(args.players)
     g = game(gamer)
     
+    con = True
+
+    while con:
+        
+        
+        con = g.play_again()
     
 def parse_args(arglist):
     """Parses argument command lines

@@ -409,7 +409,7 @@ def main():
     """
 
     gamer = player(args.players)
-    game(gamer)
+    g = game(gamer)
     
     
 def parse_args(arglist):

@@ -246,6 +246,7 @@ class game():
             player_guesses (list): list of 5 strings (the player's guesses)
             correct_answers (str): list of 5 strings (the correct answers)
             score_history (list): A list of previous scores recorded
+		Side Effects: Appends the new score_record dict to score_history.
 
         Returns:
             dict: records and stores the score for this round.
@@ -268,10 +269,15 @@ class game():
     def display_score(self, score_record):
         '''
         Author:Aya Shrestha
+		Technique: f-string containing expressions
         Displays the player's results of one round.
 
         Parameters:
             score_record(dict): The score record returned by record_round_score.
+		Side Effects:
+			Prints out round summary and encouraging messages based on the number of questions correct.
+		Returns:
+			None
         '''
         print("Total Score")
         print(f"Category: {score_record['category']}")
@@ -329,6 +335,8 @@ class game():
         Parameters:
             questions (list): List of question dictionaries.
             time_limit (int): Time allowed per question (120 seconds).
+			
+		Side Effects: Prints each question, a message when time is up, and a round summary.
 
         Returns:
             list: A list of the player's answers in order. An empty string is recorded if time is up and user has not answered.

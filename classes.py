@@ -4,11 +4,6 @@ import sys
 import random
 import time
 
-#with open("keywords.txt", "r") as file:
- #   w_bank = [line.strip().lower() for line in file if line.strip()]
-
-  #  major_word = random.choice(w_bank)
-    
 class player():
     """Class for a player. Each player has some sort of name and a highscore 
     that is updated. 
@@ -137,7 +132,7 @@ class game():
             print(f"Correct! New Round \nRound: {current_round}, Attempts: {attempts}, Points: {points}")
         return current_round, attempts, points    
         
-    def word_display(word, guess):
+    def word_display(self, word, guess):
         """Displays the word and whether your guesses are correct or not. 
 
         args:
@@ -248,7 +243,7 @@ class game():
         '''
         print("\nScore History")
         records = [
-        f"Round {i+1}: {score_history[i]['category']} | {score_history[i]['num_correct']}/5 correct | {score_history[i]['score_percent']}%"
+        f"Round {i+1}: {score_history[i]['category']} |{score_history[i]['num_correct']}/5 correct | {score_history[i]['score_percent']}%"
         for i in range(len(score_history))
     ]
         for record in records:

@@ -32,7 +32,7 @@ def state (is_correct, current_round, answers, attempts, points):
         print(f"Correct! New Round \nRound: {current_round}, Attempts: {attempts}, Points: {points}")
     return current_round, attempts, points
 
-def record_input(player_name):
+def record_input(self):
     """Records the response for the player.
 	
 		Returns: 
@@ -43,7 +43,16 @@ def record_input(player_name):
     return resp
 
 def word_display(word, guess):
-	"""Displays the word """
+	"""Displays the word and whether your guesses are correct or not. 
+
+    args:
+        word (string): The word that is being guesssed.
+        guess (string): The guess that the player inputed
+
+    side effects:
+        Prints the player's guess and then prints another line giving the results of the guess. 
+
+"""
  
 	#Might go into another method depending on how code looks
  

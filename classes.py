@@ -377,9 +377,9 @@ class game():
         
         return selected_category["name"] 
         
-    def valid_category(self, category):
+    def valid_category(self, categories):
             pattern =  r"^[A-Za-z ]+$"
-            return bool(re.fullmatch(pattern, category))
+            return bool(re.fullmatch(pattern, categories))
 
     def validate_guess_pro(self, guess, word_list):
         if len(guess) !=5 or not guess.isalpha():

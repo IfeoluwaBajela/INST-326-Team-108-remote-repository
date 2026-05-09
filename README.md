@@ -48,6 +48,10 @@ After you get the prgramming running if you type in rules it shows the instructi
 |__lt__              | Jeremy Negron-D | Magic Method                |
 |parse_args.         | Jeremy Negron-D | argeparse                   |
 
+Things of Note: Jeremy was the one who moved most of the functions from 
+algorithims_functions.py into classes.py. Once this move was made people began working
+on ther functions insdie classes.py. 
+
 
 Citations:
 Argparse - parser for command-line options, arguments and subcommands. Python documentation. (n.d.). https://docs.python.org/3/library/argparse.html - Used to help understand the argsparser. 

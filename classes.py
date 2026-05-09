@@ -1,4 +1,4 @@
-from argparse import ArgumentParser
+import argparse
 import re 
 import sys
 import random
@@ -500,12 +500,11 @@ def parse_args(arglist):
         
     """
      
-    parser = ArgumentParser() 
+    parser = argparse.ArgumentParser() 
     parser.add_argument("players", nargs = "*", help = "Player names")
     parser.add_argument("-r", "--rules", action= "store_true", help= "Displays"
                         "rules")
-    parser.add_argument('--input', type= parser.FileType('r'), 
-                        help= 'Optional input file')
+    parser.add_argument('--input', type=argparse.FileType('r'), help='optional json file')
     
     return parser.parse_args(arglist)
 

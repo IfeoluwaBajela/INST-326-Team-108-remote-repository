@@ -1,6 +1,19 @@
 # INST-326-Team-108-remote-repository
 Remote repository for team 108
 
+Purposes of files:
+
+ife_bajela_local_repositoy.py - test file to get used to using git and was used
+for an assignment. None important. 
+
+algorithims_functions.py - has the orginal files and most methods that were used 
+while working on the project before we started working on the classes. Most of
+what was used was moved into classes.py
+
+classes.py - has the main fucntions of the code and is used to run the program.
+Everything that is important is here and all the main functionanltiy is being used
+here. Main file to look at. 
+
 
 Instructions to run 
 
@@ -34,7 +47,6 @@ After you get the prgramming running if you type in rules it shows the instructi
 |valid_category      | Ifeoluwa Bajela |regular expression           |
 |__lt__              | Jeremy Negron-D | Magic Method                |
 |parse_args.         | Jeremy Negron-D | argeparse                   |
-
 
 
 Citations:

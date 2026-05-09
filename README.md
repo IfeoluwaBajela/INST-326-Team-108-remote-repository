@@ -9,6 +9,8 @@ classes.py. After that type in your name, -r or --rules if you want the rules
 (can be ommited) and also if you want to include a file type in the file you 
 want to include (also optional).
 
+Instructions how to use
+After you get the prgramming running if you type in rules it shows the instructions of the game explaining how everything works, after that the game begins and it starts with category, you answer correct or incorrect it still carries on.
 Ex
 python3 classes.py "Name" -r "file path"
 

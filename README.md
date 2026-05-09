@@ -51,6 +51,10 @@ After you get the prgramming running if you type in rules it shows the instructi
 
 Citations:
 Argparse - parser for command-line options, arguments and subcommands. Python documentation. (n.d.). https://docs.python.org/3/library/argparse.html - Used to help understand the argsparser. 
+Python for Everybody · Exploring Data Using Python 3 · Dr. Charles R. Severance · Credits · Editorial Support: Elliott Hauser, Sue Blumenberg · Cover Design: Aimee Andrion · Printing History · • 2024-Jan-01 -refresher on f-strings, and used ito embed expressions directly into f-strings. An example of this is in the display_score function, computed num-correct * 20 directly in the print statement rather than storing it in a separate variable 
+
+
+
 
 
 >>>>>>> eda1fe074dc9c87ab20e7fe062f6d6e182e71cdb

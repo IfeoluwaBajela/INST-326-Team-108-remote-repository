@@ -50,7 +50,7 @@ After you get the prgramming running if you type in rules it shows the instructi
 
 Things of Note: Jeremy was the one who moved most of the functions from 
 algorithims_functions.py into classes.py. Once this move was made people began working
-on ther functions insdie classes.py. 
+on ther functions inside classes.py. 
 
 
 Citations:

@@ -462,6 +462,17 @@ def main(name, filePath = None):
      con = g.play_again()   
 
 def  file_loader(data):
+    """
+    Athur: Yahir Cruz
+    Techniques: With open and JSON
+    Loads and parses a JSON file from the local system
+
+    Args:
+        Filepath: The path to the JSON file to be read
+    Raises: 
+        FileNotFoundError: if the filepath does not exist
+        json.JSONDecondeError: If the file is not Valid JSON.
+    """
     with open ("data", "r") as file:
         fileloading = json.load(file)
     return fileloading

@@ -4,8 +4,15 @@ Remote repository for team 108
 
 Instructions to run 
 
+When running from command land type out python3 (assuming Mac) then type 
+classes.py. After that type in your name, -r or --rules if you want the rules
+(can be ommited) and also if you want to include a file type in the file you 
+want to include (also optional).
+
 Ex
 python3 classes.py "Name" -r "file path"
+
+
 
 -r and "file path are optional with -r or --rules being used to display rules
 and "file path" being used if you want to add more categories. 

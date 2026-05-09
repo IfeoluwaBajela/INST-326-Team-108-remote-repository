@@ -1,6 +1,20 @@
 # INST-326-Team-108-remote-repository
 Remote repository for team 108
 
+
+Instructions to run 
+
+Ex
+python3 classes.py "Name" -r "file path"
+
+-r and "file path are optional with -r or --rules being used to display rules
+and "file path" being used if you want to add more categories. 
+-Name is required as the program will not be able to run without a name. 
+
+
+
+
+
 | Method            | Primary Author | Techniques demonstrated |
 |--------------------|-----------------|--------------------------|
 |run_question_timer  | Aya Shrestha    | Sequence unpacking         |
